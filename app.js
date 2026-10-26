@@ -1,5 +1,5 @@
 const mealConfig = {
-  breakfast: { moods: [["sweet","Сладкое"],["savory","Несладкое"],["any","Неважно"]], bases: [["porridge","Каша"],["curd","Творог / йогурт"],["eggs","Яйца"],["sandwich","Тост / сэндвич"],["any","Неважно"]] },
+  breakfast: { moods: [["sweet","Сладкое"],["savory","Несладкое"],["any","Неважно"]], bases: [["porridge","Каша"],["pancakes","Блины / сырники"],["curd","Творог / йогурт"],["eggs","Яйца"],["sandwich","Тост / сэндвич"],["any","Неважно"]] },
   lunch: { moods: [["hearty","Сытное"],["fresh","Свежее"],["cozy","Тёплое домашнее"],["any","Неважно"]], bases: [["chicken","Курица / индейка"],["fish","Рыба"],["legumes","Бобовые"],["eggs","Яйца"],["any","Неважно"]] },
   dinner: { moods: [["light","Лёгкое"],["hearty","Сытное"],["fresh","Свежее"],["any","Неважно"]], bases: [["chicken","Курица / индейка"],["fish","Рыба"],["eggs","Яйца"],["legumes","Бобовые"],["curd","Творог"],["any","Неважно"]] },
   snack: { moods: [["sweet","Сладкое"],["savory","Несладкое"],["crunchy","Хрустящее"],["fresh","Свежее"],["any","Неважно"]], bases: [["fruit","Фрукты"],["curd","Творог / йогурт"],["eggs","Яйца"],["legumes","Бобовые"],["sandwich","Хлебцы / тост"],["nuts","Орехи"],["any","Неважно"]] }
@@ -186,62 +186,110 @@ const SITUATIONS = [
 ];
 
 const PAIRINGS = {
-  white: { name:"Белое вино", icon:"🥂", pairs:[ // taste-skill-ignore
-    ["Совиньон-блан и козий сыр", "Рыба с лимоном и зеленью", ["козий сыр", "груша", "миндаль"]],
+  white: { name:"Белое сухое", icon:"🥂", pairs:[ // taste-skill-ignore
+    ["Совиньон-блан и козий сыр", "Белая рыба с лимоном", ["козий сыр", "груша", "миндаль"]],
     ["Шардоне и бри", "Паста с морепродуктами", ["бри", "крекеры", "виноград"]],
-    ["Креветки с цитрусом", "Курица с травами", ["креветки", "лайм", "йогуртовый соус"]]
+    ["Креветки с цитрусом", "Курица с травами", ["креветки", "лайм", "йогуртовый соус"]],
+    ["Рикотта и печёный перец", "Лосось со шпинатом", ["рикотта", "сладкий перец", "хлеб"]],
+    ["Пармезан и артишоки", "Ризотто с креветками", ["пармезан", "артишоки", "оливки"]]
   ]},
-  red: { name:"Красное вино", icon:"🍷", pairs:[ // taste-skill-ignore
+  aromatic: { name:"Рислинг / гевюрц", icon:"🍐", pairs:[ // taste-skill-ignore
+    ["Мягкий сыр и груша", "Курица в пряном соусе", ["мягкий сыр", "груша", "фисташки"]],
+    ["Креветки и манго", "Лапша с креветками", ["креветки", "манго", "лайм"]],
+    ["Паштет и яблоко", "Свинина с яблоком", ["паштет", "яблоко", "тост"]],
+    ["Сыр с голубой плесенью", "Карри с рисом", ["горгонзола", "виноград", "крекеры"]]
+  ]},
+  lightred: { name:"Лёгкое красное", icon:"🍒", pairs:[ // taste-skill-ignore
+    ["Грюйер и вишня", "Утка или курица с ягодным соусом", ["грюйер", "вишня", "миндаль"]],
+    ["Брускетта с грибами", "Грибное ризотто", ["грибы", "хлеб", "тимьян"]],
+    ["Камамбер и ягоды", "Лосось с печёными овощами", ["камамбер", "ягоды", "крекеры"]],
+    ["Ростбиф на тосте", "Паста с грибами", ["ростбиф", "ржаной хлеб", "горчица"]]
+  ]},
+  red: { name:"Насыщенное красное", icon:"🍷", pairs:[ // taste-skill-ignore
     ["Каберне и выдержанный чеддер", "Стейк с печёными овощами", ["чеддер", "грецкие орехи", "оливки"]],
-    ["Пино нуар и грюйер", "Грибное ризотто", ["грюйер", "грибы", "хлеб"]],
-    ["Риоха и манчего", "Тушёная говядина", ["манчего", "вяленые томаты", "миндаль"]]
+    ["Риоха и манчего", "Тушёная говядина", ["манчего", "вяленые томаты", "миндаль"]],
+    ["Салями и пармезан", "Лазанья с мясом", ["салями", "пармезан", "гриссини"]],
+    ["Ростбиф и корнишоны", "Говядина с картофелем", ["ростбиф", "корнишоны", "горчица"]],
+    ["Печёный перец и фета", "Баранина с овощами", ["сладкий перец", "фета", "оливки"]]
   ]},
   sparkling: { name:"Игристое", icon:"✨", pairs:[ // taste-skill-ignore
-    ["Бри или камамбер", "Креветки в темпуре", ["бри", "виноград", "крекеры"]],
+    ["Бри или камамбер", "Креветки в хрустящей панировке", ["бри", "виноград", "крекеры"]],
     ["Канапе с лососем", "Хрустящая курица с салатом", ["лосось", "огурец", "творожный сыр"]],
-    ["Пармезан и оливки", "Лимонное ризотто", ["пармезан", "оливки", "гриссини"]]
+    ["Пармезан и оливки", "Лимонное ризотто", ["пармезан", "оливки", "гриссини"]],
+    ["Картофельные крокеты", "Рыба с картофелем", ["картофель", "пармезан", "соус"]],
+    ["Клубника и мягкий сыр", "Паста с креветками", ["клубника", "мягкий сыр", "миндаль"]]
   ]},
-  rose: { name:"Розовое вино", icon:"🌸", pairs:[ // taste-skill-ignore
+  rose: { name:"Розовое", icon:"🌸", pairs:[ // taste-skill-ignore
     ["Моцарелла и томаты", "Лосось с салатом", ["моцарелла", "томаты", "базилик"]],
     ["Хумус и овощи", "Курица на гриле", ["хумус", "огурец", "сладкий перец"]],
-    ["Фета и оливки", "Паста с овощами", ["фета", "оливки", "артишоки"]]
+    ["Фета и оливки", "Паста с овощами", ["фета", "оливки", "артишоки"]],
+    ["Креветки и авокадо", "Рыба с томатами", ["креветки", "авокадо", "лайм"]]
+  ]},
+  orange: { name:"Оранжевое", icon:"🍊", pairs:[ // taste-skill-ignore
+    ["Выдержанный сыр и курага", "Запечённая курица", ["твёрдый сыр", "курага", "миндаль"]],
+    ["Хумус и печёный перец", "Тыква с нутом", ["хумус", "сладкий перец", "хлеб"]],
+    ["Паштет и луковый конфитюр", "Свинина с травами", ["паштет", "луковый конфитюр", "тост"]],
+    ["Грибы и пармезан", "Ризотто с грибами", ["грибы", "пармезан", "гриссини"]]
+  ]},
+  dessert: { name:"Десертное", icon:"🍯", pairs:[ // taste-skill-ignore
+    ["Голубой сыр и груша", "Сырники с ягодами", ["голубой сыр", "груша", "грецкие орехи"]],
+    ["Маскарпоне и персик", "Яблочный пирог", ["маскарпоне", "персик", "миндаль"]],
+    ["Печенье и орехи", "Блины с яблоком", ["песочное печенье", "фундук", "сухофрукты"]],
+    ["Шоколад и ягоды", "Творожный десерт", ["тёмный шоколад", "ягоды", "сливочный сыр"]]
+  ]},
+  fortified: { name:"Портвейн / херес", icon:"🪵", pairs:[ // taste-skill-ignore
+    ["Стилтон и грецкие орехи", "Ростбиф с грибами", ["стилтон", "грецкие орехи", "крекеры"]],
+    ["Манчего и хамон", "Говядина с картофелем", ["манчего", "хамон", "оливки"]],
+    ["Паштет на тосте", "Утка с ягодным соусом", ["паштет", "тост", "инжир"]],
+    ["Тёмный шоколад и миндаль", "Шоколадный десерт", ["тёмный шоколад", "миндаль", "сухофрукты"]]
   ]},
   lager: { name:"Лагер", icon:"🍺", pairs:[ // taste-skill-ignore
     ["Гренки и сырный соус", "Бургер с салатом", ["чесночные гренки", "чеддер", "маринованный огурец"]],
     ["Сырные палочки", "Рыба с картофелем", ["моцарелла", "панировка", "томатный соус"]],
-    ["Куриные крылья", "Колбаски с капустой", ["крылья", "соус", "овощные палочки"]]
+    ["Куриные крылья", "Колбаски с капустой", ["крылья", "соус", "овощные палочки"]],
+    ["Картофельные дольки", "Шницель с салатом", ["картофель", "чесночный соус", "корнишоны"]]
   ]},
   ipa: { name:"IPA / эль", icon:"🌿", pairs:[ // taste-skill-ignore
     ["Начос и гуакамоле", "Бургер с рваной говядиной", ["начос", "авокадо", "томатная сальса"]],
     ["Чеддер и орехи", "Пряный бургер с курицей", ["чеддер", "миндаль", "оливки"]],
-    ["Крылья барбекю", "Карри с рисом", ["куриные крылья", "соус барбекю", "овощи"]]
+    ["Крылья барбекю", "Карри с рисом", ["куриные крылья", "соус барбекю", "овощи"]],
+    ["Ростбиф и горчица", "Острая курица с картофелем", ["ростбиф", "горчица", "тёмный хлеб"]]
   ]},
   cider: { name:"Сидр", icon:"🍏", pairs:[ // taste-skill-ignore
     ["Запечённый камамбер", "Свинина с яблоком", ["камамбер", "яблоко", "хлеб"]],
     ["Сыр и яблочный чатни", "Креветки на гриле", ["полутвёрдый сыр", "чатни", "крекеры"]],
-    ["Брускетта с грушей", "Курица с корнеплодами", ["груша", "рикотта", "хлеб"]]
+    ["Брускетта с грушей", "Курица с корнеплодами", ["груша", "рикотта", "хлеб"]],
+    ["Чеддер и корнишоны", "Колбаски с картофелем", ["чеддер", "корнишоны", "горчица"]]
   ]},
   vermouth: { name:"Вермут", icon:"🍸", pairs:[ // taste-skill-ignore
     ["Оливки и солёный миндаль", "Паста с морепродуктами", ["оливки", "миндаль", "пармезан"]],
     ["Тост с анчоусом", "Испанская тортилья", ["анчоусы", "хлеб", "томаты"]],
-    ["Манчего и хамон", "Кальмар на гриле", ["манчего", "хамон", "крекеры"]]
+    ["Манчего и хамон", "Кальмар на гриле", ["манчего", "хамон", "крекеры"]],
+    ["Маринованные овощи", "Рыба с оливками", ["корнишоны", "оливки", "сладкий перец"]]
   ]},
   gin: { name:"Джин-тоник", icon:"🍋", pairs:[ // taste-skill-ignore
     ["Огурец с лососем", "Курица с лимоном", ["огурец", "лосось", "творожный сыр"]],
     ["Креветки с лаймом", "Белая рыба с зеленью", ["креветки", "лайм", "кинза"]],
-    ["Козий сыр и зелень", "Овощное карри", ["козий сыр", "огурец", "базилик"]]
+    ["Козий сыр и зелень", "Овощное карри", ["козий сыр", "огурец", "базилик"]],
+    ["Моцарелла и цитрус", "Паста с креветками", ["моцарелла", "апельсин", "руккола"]]
   ]},
   whisky: { name:"Виски", icon:"🥃", pairs:[ // taste-skill-ignore
     ["Выдержанный сыр и орехи", "Стейк с грибами", ["чеддер", "грецкие орехи", "тёмный хлеб"]],
     ["Копчёный лосось", "Рёбра или ростбиф", ["лосось", "огурец", "ржаной тост"]],
-    ["Грибы на тосте", "Говядина с картофелем", ["шампиньоны", "хлеб", "тимьян"]]
+    ["Грибы на тосте", "Говядина с картофелем", ["шампиньоны", "хлеб", "тимьян"]],
+    ["Тёмный шоколад и фундук", "Утка с печёными овощами", ["тёмный шоколад", "фундук", "сухофрукты"]]
   ]},
   zero: { name:"Без алкоголя", icon:"🫧", pairs:[ // taste-skill-ignore
     ["Хумус и овощи", "Рыба с лимоном", ["хумус", "огурец", "сладкий перец"]],
     ["Мягкий сыр и виноград", "Курица с зелёным салатом", ["бри", "виноград", "орехи"]],
-    ["Оливки и брускетта", "Овощная паста", ["оливки", "томаты", "хлеб"]]
+    ["Оливки и брускетта", "Овощная паста", ["оливки", "томаты", "хлеб"]],
+    ["Фрукты и орехи", "Рис с овощами", ["яблоко", "груша", "миндаль"]]
   ]}
 };
+const DRINK_GROUPS = [
+  {title:"Вино",ids:["white","aromatic","lightred","red","sparkling","rose","orange","dessert","fortified"]},
+  {title:"Другое",ids:["lager","ipa","cider","vermouth","gin","whisky","zero"]}
+];
 
 const ORDER_CATEGORY_INFO = {
   rolls:["Роллы","🍣"], burger:["Бургеры","🍔"], pizza:["Пицца","🍕"], shawarma:["Шаурма","🌯"], wok:["Вок","🍜"], chicken:["Курица","🍗"], dumplings:["Пельмени и вареники","🥟"], steak:["Мясо на гриле","🥩"], georgian:["Грузинское","🧀"], ramen:["Рамен","🍲"], poke:["Поке","🥢"], pasta:["Паста","🍝"] // taste-skill-ignore
@@ -289,6 +337,7 @@ function renderChoiceGroup(container, items, key) {
     state[key] = button.dataset.value;
     container.querySelectorAll("button").forEach(item => item.classList.toggle("active", item === button));
     updateMatchSummary();
+    renderQuickList();
   }));
 }
 
@@ -299,10 +348,18 @@ function renderQuestions() {
   renderQuickList();
 }
 
+function effectiveBase(recipe) {
+  if(recipe.meal==="breakfast") {
+    if(/блин|сырник|олад/i.test(recipe.title)) return "pancakes";
+    if(/каша|овсянк/i.test(recipe.title)) return "porridge";
+  }
+  return recipe.base;
+}
+
 function getExactMatches() {
   return RECIPES.filter(recipe => recipe.meal === state.meal && recipe.time <= state.time &&
     (state.mood === "any" || recipe.mood === state.mood) &&
-    (state.base === "any" || recipe.base === state.base) &&
+    (state.base === "any" || effectiveBase(recipe) === state.base) &&
     (state.veggie === "any" || recipe.veggie === state.veggie));
 }
 
@@ -312,8 +369,9 @@ function updateMatchSummary() {
 }
 
 function renderQuickList() {
-  const pool = RECIPES.filter(recipe => recipe.meal === state.meal && recipe.simpleBase && recipe.time <= 10);
-  const items = shuffled(pool).slice(0, 4);
+  const exact = getExactMatches();
+  const pool = exact.length ? exact : RECIPES.filter(recipe => recipe.meal === state.meal && recipe.time <= state.time);
+  const items = shuffled(pool).sort((a,b)=>a.time-b.time).slice(0, 4);
   $("#quickList").innerHTML = items.map(recipe => `<button class="quick-row" type="button" data-view-recipe="${recipe.id}"><span class="quick-icon">${mealIcons[recipe.meal]}</span><span><strong>${escapeHtml(recipe.title)}</strong><small>${recipe.time} минут</small></span><b>↗</b></button>`).join("");
   bindRecipeActions($("#quickList"));
 }
@@ -347,7 +405,7 @@ function renderSimpleComposer() {
   $("#simpleAddonOptions").innerHTML = Object.keys(current.addons).map(id => `<button class="simple-chip ${state.simpleAddon === id ? "active" : ""}" type="button" data-simple-addon="${id}">${ADDON_LABELS[id]}</button>`).join("");
   $("#simpleAddonOptions").querySelectorAll("button").forEach(button => button.addEventListener("click", () => { state.simpleAddon = button.dataset.simpleAddon; renderSimpleComposer(); }));
   const result = current.addons[state.simpleAddon];
-  $("#simpleResult").innerHTML = `<div class="simple-result-icon">${current.icon}</div><div class="simple-result-copy"><span>Готовый вариант</span><h3>${result[0]}</h3><p>${result[2]}</p></div><ul>${result[1].map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+  $("#simpleResult").innerHTML = `<div class="simple-result-icon">${current.icon}</div><div class="simple-result-copy"><h3>${result[0]}</h3><p>${result[2]}</p></div><ul>${result[1].map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
 }
 
 function persistKitchen() {
@@ -574,7 +632,7 @@ function persistCustom(){ localStorage.setItem("meal-builder-custom-v1",JSON.str
 function persistCollections(){ localStorage.setItem("meal-builder-collections-v1",JSON.stringify(collections)); }
 
 function renderPairings() {
-  $("#drinkSelector").innerHTML=Object.entries(PAIRINGS).map(([id,item])=>`<button class="drink-button ${state.drink===id?"active":""}" type="button" data-drink="${id}"><span>${item.icon}</span>${item.name}</button>`).join("");
+  $("#drinkSelector").innerHTML=DRINK_GROUPS.map(group=>`<section class="drink-group"><h3>${group.title}</h3><div class="drink-group-buttons">${group.ids.map(id=>{const item=PAIRINGS[id];return `<button class="drink-button ${state.drink===id?"active":""}" type="button" data-drink="${id}"><span>${item.icon}</span>${item.name}</button>`;}).join("")}</div></section>`).join("");
   $("#drinkSelector").querySelectorAll("button").forEach(button=>button.addEventListener("click",()=>{state.drink=button.dataset.drink; renderPairings();}));
   $("#pairingFormat").querySelectorAll("button").forEach(button => button.classList.toggle("active",button.dataset.pairingFormat===state.pairingFormat));
   const efforts = state.pairingFormat === "snack" ? [["any","Любая"],["simple","Без готовки"],["quick","До 20 минут"]] : [["any","Любая"],["quick","До 20 минут"],["cook","Можно приготовить"]];
@@ -614,7 +672,7 @@ function randomOrder() {
 }
 
 $$("[data-meal]").forEach(button=>button.addEventListener("click",()=>{ state.meal=button.dataset.meal; state.mood="any"; state.base="any"; $$("[data-meal]").forEach(item=>item.classList.toggle("active",item===button)); renderQuestions(); els.results.classList.add("hidden"); }));
-[[els.veggieOptions,"veggie"],[els.timeOptions,"time"]].forEach(([container,key])=>container.querySelectorAll("button").forEach(button=>button.addEventListener("click",()=>{ state[key]=key==="time"?Number(button.dataset.value):button.dataset.value; container.querySelectorAll("button").forEach(item=>item.classList.toggle("active",item===button)); updateMatchSummary(); })));
+[[els.veggieOptions,"veggie"],[els.timeOptions,"time"]].forEach(([container,key])=>container.querySelectorAll("button").forEach(button=>button.addEventListener("click",()=>{ state[key]=key==="time"?Number(button.dataset.value):button.dataset.value; container.querySelectorAll("button").forEach(item=>item.classList.toggle("active",item===button)); updateMatchSummary(); renderQuickList(); })));
 $$("[data-route]").forEach(button=>button.addEventListener("click",()=>navigate(button.dataset.route)));
 $$("[data-route-link]").forEach(link=>link.addEventListener("click",event=>{event.preventDefault();navigate(link.dataset.routeLink);}));
 $("#suggestButton").addEventListener("click",()=>suggestRecipes());

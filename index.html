@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f8f7f8" />
+    <meta name="theme-color" content="#f5f7f4" />
     <meta name="description" content="Личный конструктор еды с рецептами, списком продуктов, подборками и идеями для заказа." />
     <title>Меню</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,7 +41,7 @@
       <main class="sheet" id="mainContent">
         <section class="app-view active" data-view="builder" aria-labelledby="builderPageTitle">
           <div class="screen-heading">
-            <div><h1 id="builderPageTitle">Что приготовить?</h1><p>Выберите важное или сразу доверьте выбор сайту.</p></div>
+            <div><h1 id="builderPageTitle">Что приготовить?</h1><p>Выберите приём пищи и несколько условий.</p></div>
             <button class="text-button" id="resetButton" type="button">Сбросить</button>
           </div>
           <div class="builder-workspace"><div class="builder-panel">
@@ -55,12 +55,12 @@
               <fieldset class="question-card"><legend>Время</legend><div class="option-grid" id="timeOptions"><button class="choice" type="button" data-value="10">До 10 минут</button><button class="choice active" type="button" data-value="20">До 20 минут</button><button class="choice" type="button" data-value="40">До 40 минут</button></div></fieldset>
             </div>
             <div class="builder-footer"><p id="matchSummary">Сначала выберите то, что важно именно сейчас.</p><button class="primary-button" id="suggestButton" type="button">Показать варианты</button></div>
-          </div><aside class="quick-panel" aria-labelledby="quickTitle"><div class="panel-heading"><div><h2 id="quickTitle">Самое простое</h2><p>Обычные блюда без сложного рецепта.</p></div><button class="text-button" id="quickShuffle" type="button">Ещё</button></div><div class="quick-list" id="quickList"></div></aside></div>
-          <section class="simple-composer" aria-labelledby="simpleTitle"><div class="simple-heading"><div><h2 id="simpleTitle">Собрать из простого</h2><p>Сначала основа, затем только подходящие добавки.</p></div><button class="secondary-button" id="simpleRandom" type="button">Выбрать за меня</button></div><div class="simple-controls"><fieldset><legend>Основа</legend><div class="simple-options" id="simpleBaseOptions"></div></fieldset><fieldset><legend>Добавка</legend><div class="simple-options" id="simpleAddonOptions"></div></fieldset></div><div class="simple-result" id="simpleResult"></div></section>
+          </div><aside class="quick-panel" aria-labelledby="quickTitle"><div class="panel-heading"><div><h2 id="quickTitle">Быстрые варианты</h2></div><button class="text-button" id="quickShuffle" type="button">Обновить</button></div><div class="quick-list" id="quickList"></div></aside></div>
           <section class="results hidden" id="results" aria-live="polite" aria-labelledby="resultsTitle">
             <div class="results-heading"><div><h2 id="resultsTitle">Подходящие блюда</h2><p id="resultsSummary"></p></div></div>
             <div class="recipe-grid" id="recipeGrid"></div>
           </section>
+          <section class="simple-composer" aria-labelledby="simpleTitle"><div class="simple-heading"><div><h2 id="simpleTitle">Собрать простой вариант</h2></div><button class="secondary-button" id="simpleRandom" type="button">Случайный вариант</button></div><div class="simple-controls"><fieldset><legend>Основа</legend><div class="simple-options" id="simpleBaseOptions"></div></fieldset><fieldset><legend>Добавка</legend><div class="simple-options" id="simpleAddonOptions"></div></fieldset></div><div class="simple-result" id="simpleResult"></div></section>
         </section>
 
         <section class="app-view" data-view="pantry" aria-labelledby="pantryTitle">
