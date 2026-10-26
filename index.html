@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#edf3ef" />
+    <meta name="description" content="Личный конструктор еды с рецептами, списком продуктов, подборками и идеями для заказа." />
+    <title>Меню</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar" aria-label="Разделы сайта">
+        <a class="brand" href="#builder" data-route-link="builder" aria-label="Меню, на главную"><span class="brand-mark" aria-hidden="true"><i></i></span><span>Меню</span></a>
+        <nav class="main-nav">
+          <button class="nav-item active" type="button" data-route="builder">Подбор блюда</button>
+          <button class="nav-item" type="button" data-route="library">Все рецепты</button>
+          <button class="nav-item" type="button" data-route="mine">Моё</button>
+          <button class="nav-item" type="button" data-route="pairings">К напитку</button>
+          <button class="nav-item" type="button" data-route="order">Что заказать</button>
+        </nav>
+        <div class="sidebar-note">Рецепты и подборки хранятся только в этом браузере.</div>
+      </aside>
+
+      <header class="topbar">
+        <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-label="Открыть разделы"><span></span><span></span></button>
+        <span class="mobile-title" id="mobileTitle">Подбор блюда</span>
+        <button class="list-button" id="menuButton" type="button">Список <span class="menu-count" id="menuCount">0</span></button>
+      </header>
+
+      <main class="sheet" id="mainContent">
+        <section class="app-view active" data-view="builder" aria-labelledby="builderPageTitle">
+          <div class="screen-heading">
+            <div><h1 id="builderPageTitle">Подбор блюда</h1><p>Все выбранные условия обязательны. Неподходящие блюда в выдачу не попадут.</p></div>
+            <button class="text-button" id="resetButton" type="button">Сбросить</button>
+          </div>
+          <div class="builder-panel">
+            <div class="meal-tabs" id="mealTabs" role="group" aria-label="Приём пищи">
+              <button class="meal-tab active" type="button" data-meal="breakfast">Завтрак</button><button class="meal-tab" type="button" data-meal="lunch">Обед</button><button class="meal-tab" type="button" data-meal="dinner">Ужин</button><button class="meal-tab" type="button" data-meal="snack">Перекус</button>
+            </div>
+            <div class="question-grid">
+              <fieldset class="question-card"><legend>Что хочется?</legend><div class="option-grid" id="moodOptions"></div></fieldset>
+              <fieldset class="question-card"><legend>Основа блюда</legend><div class="option-grid" id="baseOptions"></div></fieldset>
+              <fieldset class="question-card"><legend>Овощи</legend><div class="option-grid" id="veggieOptions"><button class="choice active" type="button" data-value="any">Неважно</button><button class="choice" type="button" data-value="fresh">Свежие</button><button class="choice" type="button" data-value="warm">Тёплые</button><button class="choice" type="button" data-value="none">Без овощей</button></div></fieldset>
+              <fieldset class="question-card"><legend>Время</legend><div class="option-grid" id="timeOptions"><button class="choice" type="button" data-value="10">До 10 минут</button><button class="choice active" type="button" data-value="20">До 20 минут</button><button class="choice" type="button" data-value="40">До 40 минут</button></div></fieldset>
+            </div>
+            <div class="builder-footer"><p id="matchSummary">Сначала выберите то, что важно именно сейчас.</p><button class="primary-button" id="suggestButton" type="button">Показать варианты</button></div>
+          </div>
+          <section class="results hidden" id="results" aria-live="polite" aria-labelledby="resultsTitle">
+            <div class="results-heading"><div><h2 id="resultsTitle">Точные совпадения</h2><p id="resultsSummary">Количества указаны на одну порцию.</p></div><button class="secondary-button" id="rerollButton" type="button">Другие варианты</button></div>
+            <div class="recipe-grid" id="recipeGrid"></div>
+          </section>
+        </section>
+
+        <section class="app-view" data-view="library" aria-labelledby="libraryTitle">
+          <div class="screen-heading"><div><h1 id="libraryTitle">Все рецепты</h1><p><span id="recipeTotal">0</span> готовых вариантов для завтрака, обеда, ужина и перекуса.</p></div></div>
+          <div class="library-tools"><label class="search-field"><span>Поиск</span><input id="recipeSearch" type="search" placeholder="Например, чечевица или омлет" /></label><label class="filter-field"><span>Приём пищи</span><select id="libraryMeal"><option value="any">Все</option><option value="breakfast">Завтрак</option><option value="lunch">Обед</option><option value="dinner">Ужин</option><option value="snack">Перекус</option></select></label></div>
+          <div class="library-list" id="libraryList"></div>
+        </section>
+
+        <section class="app-view" data-view="mine" aria-labelledby="mineTitle">
+          <div class="screen-heading"><div><h1 id="mineTitle">Моё</h1><p>Добавляйте собственные рецепты и сохраняйте удачные наборы блюд.</p></div></div>
+          <div class="mine-layout">
+            <section class="form-panel" aria-labelledby="customRecipeTitle"><h2 id="customRecipeTitle">Новый рецепт</h2>
+              <form id="customRecipeForm">
+                <div class="field-row"><label><span>Название</span><input name="title" required maxlength="80" /></label><label><span>Приём пищи</span><select name="meal"><option value="breakfast">Завтрак</option><option value="lunch">Обед</option><option value="dinner">Ужин</option><option value="snack">Перекус</option></select></label></div>
+                <div class="field-row"><label><span>Время, минут</span><input name="time" type="number" min="1" max="240" value="20" required /></label><label><span>Короткая заметка</span><input name="note" maxlength="120" placeholder="Чем вам нравится этот рецепт" /></label></div>
+                <label><span>Продукты — по одному на строке</span><textarea name="ingredients" rows="6" required placeholder="Творог — 180 г&#10;Яйцо — 1 шт.&#10;Мука — 25 г"></textarea></label>
+                <label><span>Приготовление — один шаг на строке</span><textarea name="steps" rows="6" required placeholder="Смешать продукты.&#10;Сформировать сырники.&#10;Обжарить с двух сторон."></textarea></label>
+                <button class="primary-button" type="submit">Сохранить рецепт</button>
+              </form>
+            </section>
+            <section class="saved-panel" aria-labelledby="customListTitle"><div class="panel-heading"><h2 id="customListTitle">Свои рецепты</h2><span class="panel-count" id="customCount">0</span></div><div id="customRecipeList" class="compact-list"></div></section>
+            <section class="collections-panel" aria-labelledby="collectionsTitle"><div class="panel-heading"><div><h2 id="collectionsTitle">Подборки</h2><p>Сохраните блюда из текущего списка под одним названием.</p></div><span class="panel-count" id="collectionCount">0</span></div><form class="collection-form" id="collectionForm"><label><span>Название подборки</span><input name="name" required maxlength="60" placeholder="Например, будни" /></label><button class="secondary-button" type="submit">Сохранить текущий список</button></form><div id="collectionList" class="compact-list"></div><div class="import-export"><button class="text-button" id="exportButton" type="button">Скачать мои данные</button><label class="text-button file-button">Загрузить данные<input id="importInput" type="file" accept="application/json" /></label></div></section>
+          </div>
+        </section>
+
+        <section class="app-view" data-view="pairings" aria-labelledby="pairingsTitle">
+          <div class="screen-heading"><div><h1 id="pairingsTitle">Меню к напитку</h1><p>Выберите напиток — получите несколько сочетаний закуски и ужина.</p></div><span class="age-note">18+</span></div>
+          <div class="pairing-layout"><div class="drink-selector" id="drinkSelector" role="group" aria-label="Напиток"></div><div class="pairing-intro" id="pairingIntro"></div></div>
+          <div class="pairing-results" id="pairingResults"></div>
+          <p class="responsibility-note">Сочетания — ориентир по вкусу, а не медицинская рекомендация. Можно выбрать безалкогольный вариант.</p>
+        </section>
+
+        <section class="app-view" data-view="order" aria-labelledby="orderTitle">
+          <div class="screen-heading"><div><h1 id="orderTitle">Что заказать</h1><p>Когда хочется чего-то не домашнего, случайный выбор сокращает сомнения.</p></div></div>
+          <div class="order-panel"><fieldset><legend>Что сейчас ближе?</legend><div class="order-options" id="orderMood"><button class="choice active" type="button" data-order-mood="any">Всё равно</button><button class="choice" type="button" data-order-mood="crunchy">Хрустящее</button><button class="choice" type="button" data-order-mood="cheesy">С сыром</button><button class="choice" type="button" data-order-mood="spicy">Острое</button><button class="choice" type="button" data-order-mood="fresh">Посвежее</button></div></fieldset><button class="primary-button" id="randomOrderButton" type="button">Выбрать за меня</button></div>
+          <div class="order-result" id="orderResult"><p>Нажмите кнопку — здесь появится один конкретный вариант заказа.</p></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="overlay hidden" id="overlay"></div>
+    <aside class="drawer" id="menuDrawer" aria-hidden="true" aria-labelledby="menuTitle"><div class="drawer-header"><div><h2 id="menuTitle">Текущий список</h2><p>Блюда и общий список продуктов.</p></div><button class="icon-button" id="closeMenuButton" type="button" aria-label="Закрыть">×</button></div><div id="savedMeals" class="saved-meals"></div><div class="shopping-section"><div class="shopping-heading"><h3>Продукты</h3><button class="text-button" id="copyListButton" type="button">Скопировать</button></div><ul id="shoppingList" class="shopping-list"></ul></div><button class="danger-button" id="clearMenuButton" type="button">Очистить список</button></aside>
+    <dialog class="recipe-dialog" id="recipeDialog"><button class="dialog-close" id="closeDialogButton" type="button" aria-label="Закрыть">×</button><div id="dialogContent"></div></dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="recipes.js"></script><script src="app.js"></script>
+  </body>
+</html>

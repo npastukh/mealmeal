@@ -1,0 +1,9 @@
+{
+  "name": "Меню — личный конструктор",
+  "short_name": "Меню",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#edf3ef",
+  "theme_color": "#edf3ef",
+  "lang": "ru"
+}
