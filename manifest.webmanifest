@@ -3,7 +3,7 @@
   "short_name": "Меню",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#edf3ef",
-  "theme_color": "#edf3ef",
+  "background_color": "#f8f7f8",
+  "theme_color": "#b8336a",
   "lang": "ru"
 }
